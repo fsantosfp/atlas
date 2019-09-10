@@ -1,0 +1,12 @@
+{
+    "intents": [
+        "Default Welcome Intent",
+        "actions_intent_PERMISSION"
+    ],
+    "callback" : {
+        "Default Welcome Intent" : "welcomeController",
+        "actions_intent_PERMISSION" : "nameAccessPermissionController"
+    }
+}
+
+
