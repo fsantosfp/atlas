@@ -22,7 +22,7 @@ function goTo(conv,params,permission){
 
 	let intent = (conv.body.queryResult.intent.displayName).trim(); // Verify the intent name
 	let controller = require(`./src/controllers/${intentMap.callback[intent]}`); // build a require controller
-	let conversation = controller.createConversation(intent , conv, params, permission); // make a conversation about intent
+	let conversation = controller.createConversation(conv, params, permission); // make a conversation about intent
 
 	// send responses to DialogFlow
 	for (let i = 0; i < conversation.length; i++ ) {
