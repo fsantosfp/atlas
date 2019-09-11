@@ -1,7 +1,7 @@
 const { Permission } = require('actions-on-google');
 
 module.exports ={
-    createConversation(conv,params){
+    createConversation(conv){
 
         let chat; 
 
