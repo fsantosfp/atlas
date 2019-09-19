@@ -1,5 +1,3 @@
-const { Permission } = require('actions-on-google');
-
 module.exports ={
     createConversation(conv){
 
@@ -8,17 +6,10 @@ module.exports ={
         // google account username
         const name = conv.user.storage.userName;
         
-        // Instantiate Google Accout Permission,
-        // to obtain user information such as user's display name
-        const permissions = new Permission({
-            context : 'Olá, posso te chamar pelo seu nome? Mas para isto',
-            permissions : 'NAME' 
-        });
-
-        // if name is empty request permission
+        // if name is empty request to sign in
         // else use user display name in chat
         if( !name ) {
-            chat = [ permissions ];
+            chat = [ 'Pelo que vejo, este é seu primeiro acesso.', 'Para que eu possa te auxiliar corretamente, preciso que faça o login'];
         } else {
             chat =  [ `Olá ${name}, como posso te ajudar?` ];
         }
