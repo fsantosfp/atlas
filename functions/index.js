@@ -33,4 +33,4 @@ function goTo(conv,params,paremeter){
 }
 
 //exports to firebase actions
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+exports.webhook = functions.https.onRequest(app);
