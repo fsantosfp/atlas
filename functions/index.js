@@ -9,7 +9,8 @@ const functions = require('firebase-functions');
 // Instantiate the Dialogflow client with debug.
 const app = dialogflow({
     debug: true,
-    clientId: "858718028532-em6c9hicc740gngas5k56r27aun3iaai.apps.googleusercontent.com",
+	clientId: "484042635619-ic790jh2786ee6rjjfmdb7d2hc09u4ek.apps.googleusercontent.com ",
+	// clientId: "858718028532-em6c9hicc740gngas5k56r27aun3iaai.apps.googleusercontent.com",
 });
 
 // Import a json map file with all intents that has some business logical
@@ -20,11 +21,11 @@ app.intent(intentMap.intents,goTo);
 
 // This function bind a controller that has the logical business about teh intent request
 // afteward sends a response to Dialogflow
-function goTo(conv,params,paremeter){
+async function goTo(conv,params,paremeter){
 
 	let intent = (conv.body.queryResult.intent.displayName).trim(); // Verify the intent name
 	let controller = require(`./src/controllers/${intentMap.callback[intent]}`); // build a require controller
-	let conversation = controller.createConversation(conv, params, paremeter); // make a conversation about intent
+	let conversation = await controller.createConversation(conv, params, paremeter); // make a conversation about intent
 
 	// send responses to DialogFlow
 	for (let i = 0; i < conversation.length; i++ ) {

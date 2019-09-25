@@ -1,13 +1,13 @@
-const database = require('../middleware/database/firebase');
-const security = require('../security/hash');
+const UserDAO = require('../model/UserDAO');
+const encrypt = require('../security/encrypt');
 
 module.exports = {
-
-    logIn(email){
-        let user = security.encrypt(email);
-        let result = database.getUserByEmail(user);
-        
-        return (result.length > 0 ? true : false);
-    },
-
+    async logIn(email){
+        const email_hash = encrypt.encrypt(email);
+        const response = await UserDAO.findUser(email_hash)
+            .then((value) => {
+                return value;
+            });
+        return response; // Return true or false
+    }
 }

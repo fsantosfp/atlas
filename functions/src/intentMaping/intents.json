@@ -3,13 +3,15 @@
         "Default Welcome Intent",
         "actions_intent_PERMISSION",
         "ask_for_sign_in",
-        "ask_for_sign_in_confirmation"
+        "ask_for_sign_in_confirmation",
+        "teste"
     ],
     "callback" : {
         "Default Welcome Intent" : "welcomeController",
         "actions_intent_PERMISSION" : "nameAccessPermissionController",
         "ask_for_sign_in" : "signInController",
-        "ask_for_sign_in_confirmation": "signInConfirmationController"
+        "ask_for_sign_in_confirmation": "signInConfirmationController",
+        "teste": "teste"
     }
 }
 
