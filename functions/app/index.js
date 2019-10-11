@@ -4,7 +4,7 @@ const { dialogflow } = require('actions-on-google');
 const intentMap = require('./mapping/intents.json');
 const config = require('../config/services.json');
 const FactoryController = require('./controller/FactoryController');
-const ParseIntent = require('./middleware/ParseIntent');
+const ParseParameters = require('./middleware/dialogflow/parser/ParseParameters');
 
 // Instantiate the Dialogflow client with debug.
 const app = dialogflow({
@@ -31,7 +31,7 @@ async function goTo(conv,...data){
     let controller = new FactoryController(intentMap.callback[intent], conv);
     
     //get paramenters from Dialogflow
-    let parser = new ParseIntent(data); 
+    let parser = new ParseParameters(data); 
     
     // Make a conversation about intent
     //let chat = await controller.chat(conv,params,paremeter);
