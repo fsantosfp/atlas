@@ -1,6 +1,4 @@
 const express = require('express');
-const Auth = require('./Auth_tests');
-
 const routes = express.Router();
 
 /*
