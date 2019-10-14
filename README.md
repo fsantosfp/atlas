@@ -60,8 +60,8 @@ Intenção
 - Fazer Login `AuthController`
 
 - Ações
-    - Solicitar Acesso - `ask_for_sign_in()`
-    - Validar Acesso - `ask_for_sign_in_confirmation()`
+    - Solicitar Acesso - `signIn()`
+    - Validar Acesso - `signInConfirmation()`
 
 Por isso o nome da função deve ser o mesmo nome utilizado na intent do Dialogflow
 
@@ -100,7 +100,14 @@ Para rodar localmente basta executar `npm run local`.
 Apesar de aplicação possuir atualmente uma unica rota de acesso, é aqui que estamos organizando as rotas para aplicação.
 
 ### Tests
-Nesta pasta deve ficar os arquivos criados/utilizado para testes afim de não misturmos com os arquivos oficiais da aplicação
+Aqui ficam os arquivos de teste automatizados quem devem ser feitos afim de validar todo o código desenvolvido. Por padrão utilizaremos a seguinte nomenclatura ***UnidadeTestada.test.js*** ex: ***SignIn.test.js***
+
+Para rodar os teste após instalar todas as dependencias, basta executar `npm run test`.
+
+Para mais detalhes sobre como realizar teste segue algumas matérias sobre mocha e chai.
+**Document Mocha Framework** https://mochajs.org
+**Document Chai Framework** https://www.chaijs.com/
+**Medium** https://codeburst.io/javascript-unit-testing-using-mocha-and-chai-1d97d9f18e71
 
 #### CONSIDERAÇÕES
 Este projeto é apenas um teste de possibilidades para genrenciamentos de rotas, de acordo com as intents enviadas ao webhook hospedado em um servidor externo ao invés de utilizar Inline Editor.
