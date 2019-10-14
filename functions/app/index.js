@@ -2,14 +2,13 @@
 
 const { dialogflow } = require('actions-on-google');
 const intentMap = require('./mapping/intents.json');
-const config = require('../config/services.json');
 const FactoryController = require('./controller/FactoryController');
 const ParseParameters = require('./middleware/dialogflow/parser/ParseParameters');
+const Config = require('../config/Config'); 
 
-// Instantiate the Dialogflow client with debug.
 const app = dialogflow({
-    debug: config.Dialogflow.debug,
-	clientId: config.Dialogflow.clientId
+    debug: Config.Services.Dialogflow.debug,
+	clientId: Config.Services.Dialogflow.clientId
 });
 
 // Verify wich intent request then redirect to function "goTo()"
@@ -17,11 +16,7 @@ app.intent(intentMap.intents,goTo);
 
 // This function bind a controller that has the logical business about teh intent request
 // afteward sends a response to Dialogflow
-/**
- * @parameters = data[0];
- * @argumentsParsed = data[1];
- * @argumentsStatu = data[2];
- */
+
 async function goTo(conv,...data){
     
     // Verify the intent name
