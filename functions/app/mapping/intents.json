@@ -1,12 +1,12 @@
 {
     "intents": [
-        "Welcome",
-        "SignIn",
-        "SignInConfirmation"
+        "welcome",
+        "signIn",
+        "signInConfirmation"
     ],
     "callback" : {
-        "Welcome" : "WelcomeController",
-        "SignIn" : "AuthController",
-        "SignInConfirmation": "AuthController"
+        "welcome" : "WelcomeController",
+        "signIn" : "AuthController",
+        "signInConfirmation": "AuthController"
     }
 }
