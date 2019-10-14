@@ -36,7 +36,7 @@ Este projeto está estruturado da seguinte forma:
     - [enviroment](#enviroment)
     - node_modules
     - [routes](#routes)
-    - [tests](#tests)
+    - [test](#test)
     - [index.js](#index)
 
 ### functions
@@ -99,7 +99,7 @@ Para rodar localmente basta executar `npm run local`.
 ### Routes
 Apesar de aplicação possuir atualmente uma unica rota de acesso, é aqui que estamos organizando as rotas para aplicação.
 
-### Tests
+### Test
 Aqui ficam os arquivos de teste automatizados quem devem ser feitos afim de validar todo o código desenvolvido. Por padrão utilizaremos a seguinte nomenclatura ***UnidadeTestada.test.js*** ex: ***SignIn.test.js***
 
 Para rodar os teste após instalar todas as dependencias, basta executar `npm run test`.
