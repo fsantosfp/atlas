@@ -1,11 +1,5 @@
 const { SignIn } = require('actions-on-google');
-//const Auth = require('../middleware/auth.js');  CONTINUAR DAQUI
-
-/**
- * @parameters = data[0];
- * @argumentsParsed = data[1];
- * @argumentsStatu = data[2];
- */
+const Auth = require('../middleware/auth/Auth');
 
 class AuthController {
 
@@ -13,18 +7,17 @@ class AuthController {
         this.chat = [];
         this.payload;
         this.conv = conv;
+        this.auth = new Auth;
     }
 
-    ask_for_sign_in(){
-        return [new SignIn('Ok, vamos iniciar')];
-    }
+    ask_for_sign_in(){ return [new SignIn('Ok, vamos iniciar')];}
 
     async ask_for_sign_in_confirmation(parameters){
 
         if(parameters.status !== 'OK'){
             this.chat = ['Você precisa estar logado para que eu possa te auxiliar'];
          } else {
-            let allowed = await Auth.logIn(this.conv.profile.payload.email);
+            let allowed = await this.auth.logIn(this.conv.user.profile.payload.email);
             if(allowed){
                 this.conv.user.storage.userName = this.conv.user.profile.payload.name;
                 this.chat = [
