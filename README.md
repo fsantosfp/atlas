@@ -94,6 +94,8 @@ O arquivo **sample-config.env** deve ser traqueado, e sempre que for necessário
 ### Enviroment
 Nesta pasta temos um server configurado para que possa ser feitos teste de forma local, sem a necessidade de fazer deploy a toda alteração feita na aplicação.
 
+Para rodar localmente basta executar `npm run local`.
+
 ### Routes
 Apesar de aplicação possuir atualmente uma unica rota de acesso, é aqui que estamos organizando as rotas para aplicação.
 
