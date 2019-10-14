@@ -7,9 +7,12 @@ class Auth {
         this.UserRepository = new UserRepository;
     }
 
-    async logIn(user){
-        const _user = md5(user);
-        return await this.UserRepository.getActive(_user);
+    async logIn(user = null){
+        if(user){
+            const _user = md5(user);
+            return await this.UserRepository.getActive(_user);
+        }
+        return false;
     }
 }
 
