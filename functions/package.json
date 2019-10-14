@@ -7,17 +7,18 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "local" : "nodemon ./environment/local-server.js "
+    "local": "nodemon ./environment/local-server.js "
   },
   "engines": {
     "node": "8"
   },
   "dependencies": {
     "actions-on-google": "^2.12.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
     "firebase-admin": "^8.0.0",
     "firebase-functions": "^3.1.0",
-    "md5": "^2.2.1",
-    "body-parser": "^1.19.0"
+    "md5": "^2.2.1"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.1.6"
