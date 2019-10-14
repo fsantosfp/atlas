@@ -27,4 +27,17 @@ class Firebase {
     }
 }
 
-module.exports = Firebase;
+class Singleton {
+    constructor(table){
+        if(!Singleton.instance){
+            Singleton.instance = new Firebase(table)
+        }
+    }
+
+    getInstance(){
+        return Singleton.instance;
+    }
+}
+
+
+module.exports = Singleton;
