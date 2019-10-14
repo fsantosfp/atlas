@@ -7,7 +7,7 @@ class UserDAO {
         this.query = '';
     }
 
-    async findUserActive(id){
+    async findActiveUser(id){
        this.query = id + '/' + 'actived';
        let result = await this.Database.execute(this.query);
        return result !== null ? result : false;

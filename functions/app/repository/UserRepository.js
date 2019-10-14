@@ -7,7 +7,7 @@ class UserRepository {
     }
 
     async getActive(id){
-        return await this.user.findUserActive(id);
+        return await this.user.findActiveUser(id);
     }
 
 }
