@@ -10,9 +10,9 @@ class AuthController {
         this.auth = new Auth;
     }
 
-    ask_for_sign_in(){ return [new SignIn('Ok, vamos iniciar')];}
+    signIn(){ return [new SignIn('Ok, vamos iniciar')];}
 
-    async ask_for_sign_in_confirmation(parameters){
+    async signInConfirmation(parameters){
 
         if(parameters.status !== 'OK'){
             this.chat = ['Você precisa estar logado para que eu possa te auxiliar'];
