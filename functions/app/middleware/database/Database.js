@@ -3,7 +3,7 @@ const Firebase = require('./Firebase');
 class Database {
 
     constructor(table){
-        this.Firebase = new Firebase(table);
+        this.Firebase = new Firebase(table).getInstance();
     }
 
     async execute(query){
