@@ -1,14 +1,12 @@
 {
     "intents": [
-        "welcome",
-        "actions_intent_PERMISSION",
-        "ask_for_sign_in",
-        "ask_for_sign_in_confirmation"
+        "Welcome",
+        "SignIn",
+        "SignInConfirmation"
     ],
     "callback" : {
-        "welcome" : "WelcomeController",
-        "actions_intent_PERMISSION" : "nameAccessPermissionController",
-        "ask_for_sign_in" : "authController",
-        "ask_for_sign_in_confirmation": "authController"
+        "Welcome" : "WelcomeController",
+        "SignIn" : "AuthController",
+        "SignInConfirmation": "AuthController"
     }
 }
