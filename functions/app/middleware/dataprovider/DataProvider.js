@@ -10,6 +10,7 @@ class DataProvider {
         this.metrics;
 
         this.parser = new DataParser;
+        this.service = new SuperMetrics;
     }
 
     setPeriod(startDate, endDate){
@@ -26,10 +27,25 @@ class DataProvider {
     }
 
     getData(){
-        SuperMetrics.setMetrics();
-        SuperMetrics.setPeriod();
-        //SuperMetrics.setDataSource();
-        SuperMetrics.get();
+
+        // montar esta classe para consumir os dados e devolver para os reports
+
+        // modelo de requisição
+        this.service.config(
+            {
+                metrics : ['Impressions','Clicks','CTR'],
+                splitByColumn : [],
+                splitByRow : [],
+                accounts : [{
+                    "ID" : "ALL_ACCOUNTS", 
+                    "name" : "ALL ACCOUNTS" }],
+                dataSource : "google-ads",
+                userId : 9989174917,
+                apiKey : "api_iyceoEvIBH4PSrPGdzMS_Z1KamUUCCKUwj2CTJkajpTPbsEQB8pDjaHnhFnZa01CecijWh8TtbK5xVQhj4mGBo9iJCqiz2KvIfLg"
+            }
+        );
+
+        this.service.get();
     }
 
 
