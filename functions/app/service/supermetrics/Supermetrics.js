@@ -16,7 +16,7 @@ class Supermetrics{
             userId : 0,
             apiKey : ""
         };
-        this.metrics = ''; //= ['impressions', 'clicks', 'ctr'];
+        this.metrics = '';
         this.startDate;
         this.endDate;
         this.dateRangeType = 'thisyear';
@@ -30,8 +30,6 @@ class Supermetrics{
         this.maxCategories = 20;
 
         this.parser = new SupermetricsParser;
-
-        //this.setMetrics();
     }
 
     required(apikey, userId, dataSource, accounts){
