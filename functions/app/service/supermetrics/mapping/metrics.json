@@ -1,7 +1,0 @@
-{
-    "google-ads" : {
-        "impression" : "Impressions",
-        "click" : "Clicks",
-        "ctr" : "CTR_perc"
-    }
-}
