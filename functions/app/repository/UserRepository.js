@@ -10,6 +10,10 @@ class UserRepository {
         return await this.user.findActiveUser(id);
     }
 
+    async findUserCompany(id){
+        return await this.user.getUserCompany(id);
+    }
+
 }
 
 module.exports = UserRepository;
