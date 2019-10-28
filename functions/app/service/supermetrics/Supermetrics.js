@@ -1,5 +1,5 @@
 const axios = require('axios');
-const SupermetricsParser = require('../../middleware/dataprovider/DataParser');
+const DataParser = require('../../middleware/parser/DataParser');
 
 class Supermetrics{
 
@@ -17,9 +17,9 @@ class Supermetrics{
             apiKey : ""
         };
         this.metrics = '';
-        this.startDate;
-        this.endDate;
-        this.dateRangeType = 'thisyear';
+        this.startDate = '';
+        this.endDate = '';
+        this.dateRangeType = 'custom';
         this.profiles = [];
         this.dataSource = '';
         this.apiKey = '';
@@ -29,7 +29,7 @@ class Supermetrics{
         this.maxResults = 1000;
         this.maxCategories = 20;
 
-        this.parser = new SupermetricsParser;
+        this.parser = new DataParser;
     }
 
     required(apikey, userId, dataSource, accounts){
@@ -59,6 +59,7 @@ class Supermetrics{
             this.setMetrics(metrics, params.dataSource);
             this.setSplitByColumn(columns);
             this.setSplitByRow(rows);
+            this.setPeriod(params.startDate, params.endDate);
         }else{
             throw 'apikey, userId, datasource e accounts são informações obrigatórias';
         }
@@ -108,6 +109,7 @@ class Supermetrics{
     setMetrics(metrics,datasource){
         
         this.parser.load(datasource);
+        this.metrics = "";
 
         for( let i = 0; i < metrics.length ; i++){
             
@@ -151,19 +153,44 @@ class Supermetrics{
         return this.pDimensions;
     }
 
-    async get(){
-        let endPoint = this.URL + '?metrics=' + encodeURIComponent(this.getMetrics()) + '&dimensions= ' + encodeURIComponent(this.getSplitByColumn()) + '&pdimensions=' + encodeURIComponent(this.getSplitByRow())
-                        + '&maxResults=' + encodeURIComponent(this.maxResults) + '&maxCategories=' + encodeURIComponent(this.maxCategories) + '&dateRangeType=' + encodeURIComponent(this.dateRangeType)
+    setPeriod(start,end){
+        this.startDate = start;
+        this.endDate = end;
+    }
+
+    getStartDate(){
+        return this.startDate;
+    }
+
+    getEndDate(){
+        return this.endDate;
+    }
+
+    getEndpoint(datasource){
+        switch(datasource){
+            case "AW" :
+                return this.URL + '?metrics=' + encodeURIComponent(this.getMetrics()) + '&dimensions= ' + encodeURIComponent(this.getSplitByColumn()) + '&pdimensions=' + encodeURIComponent(this.getSplitByRow())
+                + '&maxResults=' + encodeURIComponent(this.maxResults) + '&maxCategories=' + encodeURIComponent(this.maxCategories) + '&dateRangeType=' + encodeURIComponent(this.dateRangeType) +'&start-date='+ this.getStartDate() + '&end-date=' + this.getEndDate()
+                + '&profiles=' + encodeURIComponent(this.getAccounts()) + '&otherParams='+encodeURIComponent('[]') + '&dataSource=' + encodeURIComponent(this.getDataSource()) + '&dsUser=' + encodeURIComponent(this.getUserId()) + '&apiKey=' + encodeURIComponent(this.getApiKey());
+            case "FA" :
+            return this.URL + '?metrics=' + encodeURIComponent(this.getMetrics()) + '&settings=ACTION_REPORT_TIME_impression&dimensions=' + encodeURIComponent(this.getSplitByColumn()) + '&pdimensions=' + encodeURIComponent(this.getSplitByRow())
+                        + '&maxResults=' + encodeURIComponent(this.maxResults) + '&maxCategories=' + encodeURIComponent(this.maxCategories) + '&dateRangeType=' + encodeURIComponent(this.dateRangeType) +'&start-date='+ this.getStartDate() + '&end-date=' + this.getEndDate()
                         + '&profiles=' + encodeURIComponent(this.getAccounts()) + '&otherParams='+encodeURIComponent('[]') + '&dataSource=' + encodeURIComponent(this.getDataSource()) + '&dsUser=' + encodeURIComponent(this.getUserId()) + '&apiKey=' + encodeURIComponent(this.getApiKey());
+        }
+    }
+
+
+    async get(){
+        let endPoint = this.getEndpoint(this.getDataSource());
         return await this.execute(endPoint);
     }
 
     async execute(endPoint){
         try{
             let response = await axios.get(endPoint);
-            return response.data;
+            return response.data.data;
         } catch (error){
-            throw 'Não foi possível obter os dados solicitados';
+            throw error;
         }
     }
 }
