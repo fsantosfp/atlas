@@ -52,7 +52,7 @@ class DataProvider {
                 accounts : [this.account],
                 dataSource : this.dataSource,
                 userId : this.userId,
-                apiKey : "api_iyceoEvIBH4PSrPGdzMS_Z1KamUUCCKUwj2CTJkajpTPbsEQB8pDjaHnhFnZa01CecijWh8TtbK5xVQhj4mGBo9iJCqiz2KvIfLg"
+                apiKey : "api_LAg3zFxH07OdnPa1lCGdHO9bifOiOD_5vCx0wl9xezuMD9B_hfSJthUELANdhQZXeUPYx9fqyWxkB0RVdzit6drLh9kfYcqJ4QUs"
             }
         );
 
