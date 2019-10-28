@@ -1,0 +1,10 @@
+{
+    "columns" : ["metric","param","parse"],
+    "dimensions" : [],
+    "metrics" : [
+        ["impressions", "impressions", "Impressions"],
+        ["clicks", "clicks", "Clicks (all)"],
+        ["ctr", "CTR_perc", "CTR (all)"]
+    ]
+
+}
