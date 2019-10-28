@@ -3,7 +3,9 @@ const routes = express.Router();
 
 const md5 = require('md5');
 const Supermetrics = require('../app/service/supermetrics/Supermetrics');
-const DataParser = require('../app/middleware/dataprovider/DataParser');
+const DataParser = require('../app/middleware/parser/DataParser');
+const Controller = require('../app/controller/ReportController');
+const Database = require('../app/model/CampaignDAO');
 
 /*
  |--------------------------------------------------------------------------
@@ -39,6 +41,23 @@ routes.get('/supermetrics', async(req, res) => {
     parser.load(config.dataSource);
     let result = parser.transform(response.data);
     res.send(result);
+});
+
+
+routes.get('/overview', async (req, res) => {
+    let report = new Controller;
+
+    let startDate = "2019-01-01";
+    let endDate = "2019-10-24";
+    let result = await report.overiew(startDate, endDate);
+
+    res.send(result);
+});
+
+routes.get('/db', async(req, res) => {
+    let db = new Database;
+    let result = await db.selectCampaign();
+    res.json(result);
 });
 
 module.exports = routes;
