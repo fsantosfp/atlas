@@ -13,6 +13,12 @@ class UserDAO {
        return result !== null ? result : false;
     }
 
+    async getUserCompany(id){
+        this.query = id + '/' + 'company';
+        let result = await this.Database.execute(this.query);
+        return result;
+    }
+
 }
 
 module.exports = UserDAO;
