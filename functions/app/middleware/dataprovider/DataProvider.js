@@ -1,5 +1,5 @@
 const SuperMetrics = require('../../service/supermetrics/Supermetrics');
-const DataParser = require('./DataParser');
+const DataParser = require('../parser/DataParser');
 
 class DataProvider {
 
@@ -8,6 +8,8 @@ class DataProvider {
         this.startDate;
         this.endDate;
         this.metrics;
+        this.dataSource;
+        this.userId;
 
         this.parser = new DataParser;
         this.service = new SuperMetrics;
@@ -26,26 +28,38 @@ class DataProvider {
         this.metrics = metrics;
     }
 
-    getData(){
+    setDataSource(datasource, id){
+        this.dataSource = datasource;
+        this.userId = id;
+    }
+
+    setAccount(id,name){
+        this.account = {"ID" : id, "name" : name};
+    }
+
+    async getData(){
 
         // montar esta classe para consumir os dados e devolver para os reports
 
         // modelo de requisição
         this.service.config(
             {
-                metrics : ['Impressions','Clicks','CTR'],
+                metrics : this.metrics,
+                startDate : this.startDate,
+                endDate : this.endDate,
                 splitByColumn : [],
                 splitByRow : [],
-                accounts : [{
-                    "ID" : "ALL_ACCOUNTS", 
-                    "name" : "ALL ACCOUNTS" }],
-                dataSource : "google-ads",
-                userId : 9989174917,
+                accounts : [this.account],
+                dataSource : this.dataSource,
+                userId : this.userId,
                 apiKey : "api_iyceoEvIBH4PSrPGdzMS_Z1KamUUCCKUwj2CTJkajpTPbsEQB8pDjaHnhFnZa01CecijWh8TtbK5xVQhj4mGBo9iJCqiz2KvIfLg"
             }
         );
 
-        this.service.get();
+        let data = await this.service.get();
+        
+        this.parser.load(this.dataSource);
+        return this.parser.transform(data,this.dataSource);
     }
 
 
