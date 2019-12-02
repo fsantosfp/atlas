@@ -107,7 +107,7 @@ class Supermetrics{
     }
 
     setMetrics(metrics,datasource){
-        
+       /* 
         this.parser.load(datasource);
         this.metrics = "";
 
@@ -124,7 +124,8 @@ class Supermetrics{
             } else {
                 throw 'A metrica '+ metrics[i] + ' não existe';
             }
-        }
+        }*/
+        this.metrics = metrics;
     }
 
     getMetrics(){
@@ -182,6 +183,7 @@ class Supermetrics{
 
     async get(){
         let endPoint = this.getEndpoint(this.getDataSource());
+        //console.log(endPoint);
         return await this.execute(endPoint);
     }
 
