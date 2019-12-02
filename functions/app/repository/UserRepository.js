@@ -6,12 +6,12 @@ class UserRepository {
         this.user = new UserDAO;
     }
 
-    async getActive(id){
-        return await this.user.findActiveUser(id);
+    async isActive(email){
+        return await this.user.selectActiveUser(email);
     }
 
-    async findUserCompany(id){
-        return await this.user.getUserCompany(id);
+    async findCompanyId(email){
+        return await this.user.selectCompanyId(email);
     }
 
 }
