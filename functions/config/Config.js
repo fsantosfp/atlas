@@ -20,6 +20,13 @@ const Database = {
             client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL
         },
     },
+    MySQL : {
+        host : process.env.MYSQL_HOST,
+        port : process.env.MYSQL_PORT,
+        user : process.env.MYSQL_USER,
+        pswd : process.env.MYSQL_PASSWORD,
+        database : process.env.MYSQL_DATABASE
+    }
 };
 
 const Services = {
