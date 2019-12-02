@@ -5,7 +5,7 @@ const md5 = require('md5');
 const Supermetrics = require('../app/service/supermetrics/Supermetrics');
 const DataParser = require('../app/middleware/parser/DataParser');
 const Controller = require('../app/controller/ReportController');
-const Database = require('../app/model/CampaignDAO');
+const Database = require('../app/repository/UserRepository');
 
 /*
  |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ routes.get('/overview', async (req, res) => {
 
 routes.get('/db', async(req, res) => {
     let db = new Database;
-    let result = await db.selectCampaign();
-    res.json(result);
+    let r = await db.isActive('a9a205d3f5656f632d35b09c42fbcf3a');
+    res.json(r);
 });
 
 module.exports = routes;
