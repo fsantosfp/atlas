@@ -25,7 +25,24 @@ class DataProvider {
     }
 
     setMetrics(metrics){
-        this.metrics = metrics;
+        //this.metrics = metrics;
+
+        this.parser.load(this.dataSource);
+        this.metrics = "";
+
+        for( let i = 0; i < metrics.length ; i++){
+            
+            let metric = this.parser.getMetric(metrics[i].toLowerCase());
+            
+            if(this.metrics.length > 0 ){
+                this.metrics += ',';
+            }
+            
+            if( metric !== undefined ){
+                this.metrics += metric;
+            }
+        }
+
     }
 
     setDataSource(datasource, id){
@@ -52,7 +69,7 @@ class DataProvider {
                 accounts : [this.account],
                 dataSource : this.dataSource,
                 userId : this.userId,
-                apiKey : "api_LAg3zFxH07OdnPa1lCGdHO9bifOiOD_5vCx0wl9xezuMD9B_hfSJthUELANdhQZXeUPYx9fqyWxkB0RVdzit6drLh9kfYcqJ4QUs"
+                apiKey : "api_5hG2GsVc9w8oEdSEVA4P7zEn_iVGSA1PL9PTTU3Bt6Hw6JycrnW_sf9aXsaB3EQHAo_cwPaiSpcWUiz2helGYEaVZhaD8hLK9WMh"
             }
         );
 
