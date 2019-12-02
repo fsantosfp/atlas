@@ -13,9 +13,7 @@ class OverviewReport extends Reports {
             this.impressions = data[i].data.impressions;
             this.clicks = data[i].data.clicks;
             this.ctr = this.calcule.ctr(this.clicks, this.impressions);
-
-            console.log(this.clicks, this.impressions, this.ctr);
-
+            
             this.setInsight();
         }
     }
