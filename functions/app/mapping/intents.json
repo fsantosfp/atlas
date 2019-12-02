@@ -3,12 +3,18 @@
         "welcome",
         "signIn",
         "signInConfirmation",
-        "infoCampaigns"
+        "findCampaign",
+        "reports",
+        "completeRequest",
+        "chooseCampaign"
     ],
     "callback" : {
         "welcome" : "WelcomeController",
         "signIn" : "AuthController",
         "signInConfirmation" : "AuthController",
-        "infoCampaigns" : "ReportController"
+        "findCampaign" : "CampaignController",
+        "reports" : "ReportController",
+        "request" : "CompleteRequestController",
+        "chooseCampaign" : "CompleteRequestController"
     }
 }
