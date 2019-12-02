@@ -1,22 +1,22 @@
-const Database = require('../middleware/database/Database');
+const Database = require('../database/Database');
 
-class UserDAO {
+class UserDAO extends Database{
 
     constructor(){
-        this.Database = new Database('users');
+        super();
         this.query = '';
     }
 
-    async findActiveUser(id){
-       this.query = id + '/' + 'actived';
-       let result = await this.Database.execute(this.query);
-       return result !== null ? result : false;
+    async selectActiveUser(email){
+        this.query = 'SELECT userActive FROM users WHERE userEmail = "' + email + '"';
+        const result = await this.execute(this.query);
+        return result[0].userActive;
     }
 
-    async getUserCompany(id){
-        this.query = id + '/' + 'company';
-        let result = await this.Database.execute(this.query);
-        return result;
+    async selectCompanyId(email){
+        this.query = 'SELECT userCompanyId FROM users WHERE userEmail = "' + email + '"';
+        const result = await this.execute(this.query);
+        return result[0].userCompanyId;
     }
 
 }
