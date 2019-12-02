@@ -1,10 +1,17 @@
 const GoogleAds = require('../../service/supermetrics/mapping/google-ads.json');
 const FacebookAds = require('../../service/supermetrics/mapping/facebook-ads.json');
+const Error = require('../../log/Errors');
 
 class DataParser {
 
     constructor(){
         this.map;
+        this.data = {
+            'datasource' : '',
+            'data' : {},
+            'errors' : []
+        };
+        this.datasource = '';
         //this.data = [[]];
         
     }
@@ -18,19 +25,21 @@ class DataParser {
                 this.map = FacebookAds;
                 break;
         }
+        this.datasource = datasource;
     }
 
     transform(data, datasource){
-        
+        /*
         this.data = {
             'datasource' : datasource,
-            'data' : {}
-        };
+            'data' : {},
+            'errors' : []
+        };*/
+        this.data.datasource = datasource;
         let len = data[0].length;
         let _metric = {};
         for(let i = 0; i < len; i++){
             let metric = data[0][i];
-            console.log(metric);
             for(let y = 0; y < this.map.metrics.length; y++){
                 let index = this.map.metrics[y].indexOf(metric);
                 if(index >= 0){
@@ -40,7 +49,6 @@ class DataParser {
         }
 
         this.data.data = _metric;
-        console.log(_metric);
         return this.data;
 
     }
@@ -52,6 +60,7 @@ class DataParser {
                 return this.map.metrics[i][1];
             }
         }
+        this.data.errors.push(value);
     }
 
     getDimension(value){
