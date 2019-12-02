@@ -18,12 +18,13 @@ app.intent(intentMap.intents,goTo);
 // afteward sends a response to Dialogflow
 
 async function goTo(conv,...data){
-    
+    // UTILIZAR CONV.ACTION COMO PARAMETRO de METHODO A SER EXECUTADO EM UM CONTROLLER
     // Verify the intent name
     let intent = (conv.intent).trim();
+    let action = (conv.action).trim();
     
     // Build a require controller
-    let controller = new FactoryController(intentMap.callback[intent], conv);
+    let controller = new FactoryController(intentMap.callback[action], conv);
     
     //get paramenters from Dialogflow
     let parser = new ParseParameters(data); 
@@ -31,7 +32,7 @@ async function goTo(conv,...data){
     // Make a conversation about intent
     //let chat = await controller.chat(conv,params,paremeter);
 
-    let chat = await controller.chat(intent, parser.getParameter());
+    let chat = await controller.chat(action, parser.getParameter());
     
     // send responses to DialogFlow
 	for (let i = 0; i < chat.length; i++ ) {
