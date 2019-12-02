@@ -1,5 +1,6 @@
 const { SignIn } = require('actions-on-google');
 const Auth = require('../middleware/auth/Auth');
+const UserRepository = require('../repository/UserRepository');
 
 class AuthController {
 
@@ -8,6 +9,7 @@ class AuthController {
         this.payload;
         this.conv = conv;
         this.auth = new Auth;
+        this.user = new UserRepository;
     }
 
     signIn(){ return [new SignIn('Ok, vamos iniciar')];}
@@ -20,6 +22,7 @@ class AuthController {
             let allowed = await this.auth.logIn(this.conv.user.profile.payload.email);
             if(allowed){
                 this.conv.user.storage.userName = this.conv.user.profile.payload.name;
+                this.conv.user.storage.companyId = await this.user.findCompanyId(this.conv.user.profile.payload.email);
                 this.chat = [
                     'Obrigado por fazer o login! Agora consigo te passar todos os dados de suas campanhas'
                 ];
