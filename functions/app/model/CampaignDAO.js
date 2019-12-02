@@ -1,20 +1,24 @@
-const Database = require('../middleware/database/Database');
+const Database = require('../database/Database');
 
 class CampaignDAO extends Database {
 
     constructor(){
-        super('customers');
+        super();
         this.query = '';
-        this.table = this.database.conn.database();
+        this.result = '';
     }
 
-    selectCampaign(id){
+    async selectCampaignName(id){/*
         let ref = 'customers/1/campaings';
         let data = this.table.ref(ref).once('value').then((snapshot) => {
             return snapshot.val();
-        });
+        });*/
+    }
 
-        return data;
+    async selectCampaignNameLike(name,companyId){
+        this.query = 'SELECT campaignId, campaignName FROM campaigns WHERE campaignName LIKE "'+ name +'%" AND campaignCompanyId = ' + companyId;
+        this.result = await this.execute(this.query);
+        return this.result;
     }
 
 
