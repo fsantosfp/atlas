@@ -1,4 +1,5 @@
 const OverviewReport = require('./OverviewReport');
+const MetricsReports = require('./MetricsReport');
 
 class FactoryReports {
 
@@ -8,6 +9,8 @@ class FactoryReports {
         switch(type){
             case 'overview' :
                 return new OverviewReport;
+            case 'metrics' :
+                return new MetricsReports;
         }
     }
 }
