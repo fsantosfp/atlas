@@ -12,6 +12,7 @@ class Reports {
         this.clicks = 0;
         this.ctr = 0;
         this.insights = '';
+        this.errors = '';
 
         this.calcule = new MediaMath;
         
@@ -19,6 +20,10 @@ class Reports {
 
     getMetrics(){
         return this.metrics;
+    }
+
+    setDate(startDate, endDate){
+
     }
 
 }
