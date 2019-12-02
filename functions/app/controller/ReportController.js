@@ -1,46 +1,45 @@
 const FactoryReport = require('../reports/FactoryReports');
 const DataProvider = require('../middleware/dataprovider/DataProvider');
+const AccessRepository = require('../repository/AccessRepository');
 
 class ReportController extends FactoryReport{
 
     constructor(){
         super();
         this.provider = new DataProvider;
+        this.access = new AccessRepository;
         this.report;
 
         this.chat = [];
     }
 
-    async infoCampaigns(param){
-        switch(param.reportType){
-            case "overview" :
+    async reports(param){
+        switch(param.report){
+            case 'overview':
                 return await this.overiew(param);
         }
     }
 
+    async onlyMetrics(param){
+        const _access = await this.access.getAcessAccount(param.campaignId);
+    }
+
     async overiew(param){
        
-        let campaigns = {
-            "facebook-ads" : {
-                "accountName" : "[CAT]VANGUARD SOLUTIONS",
-                "accountId" : 'act_356407048375036',
-                "userId" : 138411284219629,
-            },
-            "google-ads" : {
-                "accountName" : "CATERPILAR | GCI | LATAM",
-                "accountId" : 8131806833,
-                "userId" : 9989174917,
-            }
-        };
+        const _access = await this.access.getAcessAccount(param.campaignId);
 
         let startDate = param.period.startDate.split("T")[0];
         let endDate = param.period.endDate.split("T")[0];
 
         this.report = this.create('overview');
+        
         const campaingData = [];
-        for( let dataSource in campaigns){
-            this.provider.setDataSource(dataSource,campaigns[dataSource].userId);
-            this.provider.setAccount(campaigns[dataSource].accountId, campaigns[dataSource].accountName);
+        let len = _access.length;
+    
+        for( let i = 0; i < len; i++){
+        
+            this.provider.setDataSource(_access[i].platformName, _access[i].accessUserId);
+            this.provider.setAccount(_access[i].accessAccountId, _access[i].accessAccountName);
             this.provider.setPeriod(startDate, endDate);
             this.provider.setMetrics(this.report.getMetrics());
             let data = await this.provider.getData();
@@ -53,7 +52,6 @@ class ReportController extends FactoryReport{
         
         return this.chat;
     }
-
 }
 
 module.exports = ReportController;
