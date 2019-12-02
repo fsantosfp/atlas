@@ -1,0 +1,44 @@
+{
+    "notes": {
+      "status": "success",
+      "datasource": "AW",
+      "result_rows": 1,
+      "result_values": 3,
+      "runtime_sec": 3,
+      "numeric_format_columns_start": 0,
+      "numeric_format_rows_start": 1,
+      "sampled": false
+    },
+    "data": [
+      [
+        "Impressions",
+        "Clicks",
+        "CTR"
+      ],
+      [
+        10127330,
+        65605,
+        0.6478015429535722
+      ]
+    ],
+    "columns": [
+      {
+        "name": "Impressions",
+        "field": "impressions",
+        "type": "met",
+        "data_type": "int.number.value"
+      },
+      {
+        "name": "Clicks",
+        "field": "clicks",
+        "type": "met",
+        "data_type": "int.number.value"
+      },
+      {
+        "name": "CTR",
+        "field": "ctr",
+        "type": "met",
+        "data_type": "float.number.ratio"
+      }
+    ]
+  }
