@@ -1,20 +1,27 @@
 {
     "intents": [
-        "welcome",
+        "Welcome",
         "signIn",
         "signInConfirmation",
         "findCampaign",
         "reports",
         "completeRequest",
-        "chooseCampaign"
+        "chooseCampaign",
+        "aboutCampaign",
+        "yesChooseMedia",
+        "noChooseMedia"
     ],
     "callback" : {
-        "welcome" : "WelcomeController",
+        "Welcome" : "WelcomeController",
         "signIn" : "AuthController",
-        "signInConfirmation" : "AuthController",
+        "signInConfirmation" : "WelcomeController",
         "findCampaign" : "CampaignController",
+        "aboutCampaign" : "CampaignController",
         "reports" : "ReportController",
         "request" : "CompleteRequestController",
-        "chooseCampaign" : "CompleteRequestController"
+        "chooseCampaign" : "CompleteRequestController",
+        "yesChooseMedia" : "MediaController",
+        "noChooseMedia" : "MediaController"
+
     }
 }
