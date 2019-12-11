@@ -14,6 +14,10 @@ class UserRepository {
         return await this.user.selectCompanyId(email);
     }
 
+    async getId(email){
+        return await this.user.selectUserId(email);
+    }
+
 }
 
 module.exports = UserRepository;
