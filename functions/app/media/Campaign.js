@@ -1,3 +1,4 @@
+const CampaignRepository = require('../repository/CampaignRepository');
 const SessionEntities = require('../middleware/dialogflow/entity/SessionEntities');
 const SessionContexts = require('../middleware/dialogflow/contexts/Contexts');
 
@@ -9,45 +10,40 @@ class Campaign {
         this.contexts = new SessionContexts(conv);
         this.conv = conv;
         this.campaignName = '';
+        this.repository = new CampaignRepository;
+        this.listCampaign;
     }
 
-    setChoice(options,datasource,metrics,period){
-        let msg = "Encontrei mais de uma campanha com o nome que me informou, estas são: ";
+    async getAll(userId){
+        this.listCampaign = await this.repository.getAllByUser(userId);
+        return this.listCampaign;
+    }
 
-        const len = options.length;
+    setChoice(datasource,metrics,period){
+        //const result = await this.campaign.getAllByUser(userId);
+        const len = this.listCampaign.length;
         const last = len - 1;
 
         this.sessionEntities.setEntity('campaign');
 
+        this.msg = "Você tem acesso a mais de uma campanha, por favor diga ";
         for(let i = 0; i < len; i++){
-            this.campaignName = options[i].campaignName.toUpperCase();
+            this.campaignName = this.listCampaign[i].campaignName.toUpperCase();
             if(i == 0){
-                msg += this.campaignName;
+                this.msg += (i+1) +' para '+ this.campaignName;
             }else if ( i == last ){
-                msg += " e "+ this.campaignName + ".";
+                this.msg += " e "+ (i+1) +' para '+ this.campaignName + ".";
             }else{
-                msg += ", " + this.campaignName; 
+                this.msg += ", " + (i+1) +' para '+ this.campaignName; 
             }  
-            this.sessionEntities.updateEntity(this.campaignName,options[i].campaignId,i+1);
+            this.sessionEntities.updateEntity(this.campaignName,this.listCampaign[i].campaignId,i+1);
         }
+        //this.msg += ' Me confirma qual delas deseja obter os dados.';
+        //this.contex(metrics,datasource,period);
 
-        msg += ' Me confirma, qual desta seria a campanha correta?';
-        this.contex(metrics,datasource,period);
-        /*
-        this.contexts.setContextName("optionsCampaign", 1);
-        this.contexts.setContextParameters("metrics", metrics);
-        this.contexts.setContextParameters("dataSource", datasource);
-        this.contexts.setContextParameters("period", period);*/
-
-        /*
-        WHEN USE A SESSION ENTITIES, IS NECESSARY TO SEND A ASK THROUGH OWN CLASS METHOD
-        BEACUSE IF YOU SERIALIZE BEFORE DO GET A ASK FUNCITON, THIS WILL MAKE AN ERROR.
-        SO THE RETURN NEEDS TO BE A NULL ARRAY.
-        */
-       
-        this.conv.ask(msg);
+        this.conv.ask(this.msg);
         this.conv.json(this.sessionEntities.getEntities());
-        this.conv.json(this.contexts.getContexts());
+        //this.conv.json(this.contexts.getContexts());
 
         return [];
     }
@@ -60,15 +56,13 @@ class Campaign {
         return [];
     }
 
-    entity(){
-        
+    contex(campaignId){
+        this.contexts.setContextName("chooseCampaign", 1);
+        this.contexts.setContextParameters("campaign", campaignId);
     }
 
-    contex(datasource,metrics,period){
-        this.contexts.setContextName("optionsCampaign", 1);
-        this.contexts.setContextParameters("metrics", metrics);
-        this.contexts.setContextParameters("dataSource", datasource);
-        this.contexts.setContextParameters("period", period);
+    getContext(){
+        return this.contexts.getContexts();
     }
 
 
