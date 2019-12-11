@@ -8,11 +8,10 @@ class CampaignDAO extends Database {
         this.result = '';
     }
 
-    async selectCampaignName(id){/*
-        let ref = 'customers/1/campaings';
-        let data = this.table.ref(ref).once('value').then((snapshot) => {
-            return snapshot.val();
-        });*/
+    async selectCampaignByUser(userid){
+        this.query = 'Select campaignId, campaignName from campaigns Where userId = ' + userid;
+        this.result = await this.execute(this.query);
+        return this.result;
     }
 
     async selectCampaignNameLike(name,companyId){
