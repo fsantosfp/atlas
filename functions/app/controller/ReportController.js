@@ -2,15 +2,26 @@ const FactoryReport = require('../reports/FactoryReports');
 const DataProvider = require('../middleware/dataprovider/DataProvider');
 const AccessRepository = require('../repository/AccessRepository');
 
-class ReportController extends FactoryReport{
+const SessionEntities = require('../middleware/dialogflow/entity/SessionEntities');
+const SessionContexts = require('../middleware/dialogflow/contexts/Contexts');
 
-    constructor(){
+const Reports = require('../core/Reports');
+
+//class ReportController extends FactoryReport{
+class ReportController{
+
+    constructor(conv){
+        /*
         super();
         this.provider = new DataProvider;
         this.access = new AccessRepository;
-        this.report;
 
+        this.sessionEntities = new SessionEntities(conv);
+        this.contexts = new SessionContexts(conv);*/
+
+        this.report = new Reports(conv);
         this.chat = [];
+        this.conv = conv;
     }
 
     async reports(param){
@@ -18,6 +29,24 @@ class ReportController extends FactoryReport{
             case 'overview':
                 return await this.overiew(param);
         }
+    }
+
+    getDefaultReports(param){
+        this.report.getDefaultReports(param);
+/*
+        this.conv.ask("Atualmente estas são as opções: diga 1 para Overview.");
+        
+        this.sessionEntities.setEntity('reports');
+        this.sessionEntities.updateEntity('overview','overview',1);
+        this.contexts.setContextName("chooseReport", 1);
+        this.contexts.setContextParameters("campaign", param.campaign);
+        this.contexts.setContextParameters("dataSources", param.dataSources);
+        
+        this.conv.json(this.sessionEntities.getEntities());
+        this.conv.json(this.contexts.getContexts());
+
+        return [];*/
+
     }
 
     async onlyMetrics(param){
