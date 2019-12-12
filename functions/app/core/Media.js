@@ -27,7 +27,7 @@ class Media {
             
             this.contexts.setContextName("chooseMedia", 1);
             this.contexts.setContextParameters("campaign", campaignId);
-            this.contexts.setContextParameters("dataSource", this.media[0].id);
+            this.contexts.setContextParameters("dataSources", this.media[0].id);
             this.conv.ask('Certo, encontrei a media que deseja. Gostaria de obter dados de uma alguma métrica especifica?');
             this.conv.json(this.contexts.getContexts());
         }else{
@@ -43,7 +43,7 @@ class Media {
         const len = this.media.length;
         const last = len - 1;
 
-        this.sessionEntities.setEntity('dataSources');
+        this.sessionEntities.setEntity('media');
         this.msg = "Sua campanha está veiculando nas seguintes medias, por favor diga ";
         for(let i = 0; i < len; i++){
             this.name = this.media[i].name;
@@ -55,7 +55,8 @@ class Media {
                 this.msg += ", " + (i+1) +' para '+ this.name; 
             }
 
-            this.sessionEntities.updateEntity(this.name,this.media[i].id,i+1);
+            //this.sessionEntities.updateEntity(this.name,this.media[i].id,i+1);
+            this.sessionEntities.updateEntity(this.name,this.name,i+1);
         }
 
         this.conv.ask(this.msg);
