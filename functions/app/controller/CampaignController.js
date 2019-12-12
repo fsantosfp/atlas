@@ -26,7 +26,7 @@ class CampaignController {
             this.campaign.setChoice(param.dataSources,param.metrics,param.period);
         }else if( len == 1){
             this.campaign.contex(listCampaigns[0].campaignId);
-            this.conv.ask('Atualmente sua campanha ativa é ' + listCampaigns[0].campaignName.toUpperCase() +'. Você deseja obter dados de algum veiculo especifico?' );
+            this.conv.ask('Atualmente sua campanha ativa é ' + listCampaigns[0].campaignName.toUpperCase() +'. Você deseja obter dados de algum veículo específico?' );
             this.conv.json(this.campaign.getContext());
         }else{
             this.campaign.notFound(param.dataSources,param.metrics,param.period);
