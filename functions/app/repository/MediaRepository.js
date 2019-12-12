@@ -19,6 +19,11 @@ class MediaRepository {
         return await this.dao.selectByCampaign(campaignId,dataSourceName);
     }
 
+    async getName(id){
+        const result = await this.dao.selectById(id);
+        return result[0].name;
+    }
+
 }
 
 module.exports = MediaRepository;
