@@ -9,7 +9,11 @@
         "chooseCampaign",
         "aboutCampaign",
         "yesChooseMedia",
-        "noChooseMedia"
+        "yesChooseMedia - custom",
+        "noChooseMedia",
+        "yesChooseMetrics",
+        "yesChooseMetrics - custom",
+        "noChooseMetrics - yes"
     ],
     "callback" : {
         "Welcome" : "WelcomeController",
@@ -21,7 +25,10 @@
         "request" : "CompleteRequestController",
         "chooseCampaign" : "CompleteRequestController",
         "yesChooseMedia" : "MediaController",
-        "noChooseMedia" : "MediaController"
-
+        "yesChooseMedia - custom": "MediaController",
+        "noChooseMedia" : "MediaController",
+        "yesChooseMetrics" : "MetricController",
+        "yesChooseMetrics - custom" : "MetricController",
+        "noChooseMetrics - yes" : "ReportController"
     }
 }
