@@ -5,7 +5,7 @@ const AccessRepository = require('../repository/AccessRepository');
 const CampaignRepository = require('../repository/CampaignRepository');
 const PlaformRepository = require('../repository/PlatformRepository');
 
-const Campaign = require('../media/Campaign');
+const Campaign = require('../core/Campaign');
 
 class CompleteRequestController extends FactoryReport{
 
