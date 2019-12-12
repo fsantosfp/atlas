@@ -63,8 +63,14 @@ class DataParser {
         this.data.errors.push(value);
     }
 
-    getDimension(value){
-
+    isValid(value){
+        for(let i = 0; i < this.map.metrics.length; i++){
+            let index = this.map.metrics[i].indexOf(value);
+            if(index >= 0){
+                return true;
+            }
+        }
+        return false;
     }
 }
 
