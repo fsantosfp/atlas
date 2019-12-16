@@ -1,4 +1,4 @@
-const Media = require('../media/Media');
+const Media = require('../core/Media');
 
 class MediaController {
 
@@ -18,9 +18,9 @@ class MediaController {
             }
             else if( len == 1 ){
                 //return ['Sua campanha está veiculando apenas em ' + this.media];
-                this.media.contex(param);
-                this.conv.ask('Sua campanha está veiculando apenas em ' + this.media);
-                this.conv.json(this.media.getContexts());
+                this.media.setContext(param.campaign,list[0].id);
+                this.conv.ask('Sua campanha está veiculando apenas em ' + list[0].name + '. Deseja obter alguma métrica específica?');
+                this.conv.json(this.media.getContext());
             }
             else{
                 this.conv.close('Houve um erro, parece que sua campanha ainda não está veiculando. Por favor entre em contato com a CRANE.');
