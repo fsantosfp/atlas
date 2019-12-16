@@ -1,5 +1,5 @@
 const Auth = require('../middleware/auth/Auth');
-const Campaign = require('../media/Campaign');
+const Campaign = require('../core/Campaign');
 const SessionEntities = require('../middleware/dialogflow/entity/SessionEntities');
 const UserRepository = require('../repository/UserRepository');
 
