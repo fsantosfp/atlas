@@ -9,15 +9,17 @@ class requestController {
         //this.metrics = new Metrics;
     }
 
-    request(param){
-        if(param.reports != "null"){
-            this.reports.make();
+    async getData(param){
+        let data = ""; 
+        if(param.report != "null"){
+           data = await this.reports.makeDefault(param);
+        }else{
+            data = await this.reports.makeCustom(param);
         }
 
-        //this.metrics.make();
+        data.push(' Gostaria de fazer uma nova consulta?');
+        return data;
     }
-
-
 }
 
 module.exports = requestController;
