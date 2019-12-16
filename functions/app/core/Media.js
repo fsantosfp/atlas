@@ -89,6 +89,12 @@ class Media {
 
     }
 
+    setContext(campaignId, dataSourceId){
+        this.contexts.setContextName("chooseMedia", 1);
+        this.contexts.setContextParameters("campaign", campaignId);
+        this.contexts.setContextParameters("dataSources", dataSourceId);
+    }
+
     getContext(){
         return this.contexts.getContexts();
     }
