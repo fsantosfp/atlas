@@ -1,20 +1,25 @@
-const Reports = require('./Reports');
+const BaseReports = require('./BaseReports');
 
-class OverviewReport extends Reports {
+class OverviewReport extends BaseReports {
 
     constructor(){
         super();
         this.metrics = ['impressions','clicks','ctr'];
+        this.error = '';
     }
 
-    make(data){
+    get(data){
         for(let i = 0; i < data.length; i++){
-            this.datasource = data[i].datasource;
-            this.impressions = data[i].data.impressions;
-            this.clicks = data[i].data.clicks;
-            this.ctr = this.calcule.ctr(this.clicks, this.impressions);
-            
-            this.setInsight();
+            if(data[i].errors.length == 0){
+                this.datasource = data[i].datasource;
+                this.impressions = data[i].data.impressions;
+                this.clicks = data[i].data.clicks;
+                this.ctr = this.calcule.ctr(this.clicks, this.impressions);
+                
+                this.setInsight();
+            }else{
+                this.setError(data[0].errors);
+            }
         }
     }
 
@@ -27,8 +32,15 @@ class OverviewReport extends Reports {
     }
 
     getInsight(){
-       return this.insights;
+       return this.error + " " +this.insights;
     }
+
+    setError(error){
+        error.map((e)=>{
+            this.error = e;
+        });
+    }
+
 
 }
 
