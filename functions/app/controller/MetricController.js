@@ -12,11 +12,15 @@ class MetricController {
         this.dataSource;
         this.metrics;
         this.msg = '';
+        this.invalidMetrics = 0;
+        this.validMetrics = 0;
     }
 
     async findMetric(param){
         if(param.metrics == "null"){
-            return ['Caso precise, posso te mostrar as possíveis métricas disponíveis. Basta dizer Ajuda ou me diga qual métrica tem interesse'];
+            // LIBERAR ROTA DE HELP FUTURAMENTE
+            //return ['Caso precise, posso te mostrar as possíveis métricas disponíveis. Basta dizer Ajuda ou me diga qual métrica tem interesse'];
+            return ['Quais seriam as métricas que deseja?'];
         }else{
             
             const dataSource = Array.isArray(param.dataSources) ? param.dataSources : [param.dataSources];
@@ -28,21 +32,35 @@ class MetricController {
                 let media = await this.media.getName(mediaId);
                 this.makeMsg('para '+media+' os dados de ');
                 this.parser.load(media);
+
                 metrics.map((value)=>{
                     if(this.parser.isValid(value)){
                         this.makeMsg(value + ', ');
+                        this.validMetrics ++;
+                    }else{
+                        this.makeMsg(value + ' mas esta não é uma metrica válida para este veículo, ');
+                        this.invalidMetrics++;
                     }
                 });
             });
 
             await Promise.all(result).then(()=>{
-                this.makeMsg(' qual seria o período para análise?');
-                this.contexts.setContextName("getRequest", 1);
-                this.contexts.setContextParameters("campaign", param.campaign);
-                this.contexts.setContextParameters("dataSources", param.dataSources);
-                this.contexts.setContextParameters("metrics", param.metrics);
-                this.conv.ask(this.msg);
-                this.conv.json(this.contexts.getContexts());
+                if(this.invalidMetrics > 0 && this.validMetrics == 0){
+                    this.makeMsg(' preciso que me informe ao menos uma métrica válida!');
+                    this.contexts.setContextName("chooseMetrics", 1);
+                    this.contexts.setContextParameters("campaign", param.campaign);
+                    this.contexts.setContextParameters("dataSources", param.dataSources);
+                    this.conv.ask(this.msg);
+                    this.conv.json(this.contexts.getContexts());
+                }else{
+                    this.makeMsg(' qual seria o período para análise?');
+                    this.contexts.setContextName("getRequest", 1);
+                    this.contexts.setContextParameters("campaign", param.campaign);
+                    this.contexts.setContextParameters("dataSources", param.dataSources);
+                    this.contexts.setContextParameters("metrics", param.metrics);
+                    this.conv.ask(this.msg);
+                    this.conv.json(this.contexts.getContexts());
+                }
             });
 
             return [];
