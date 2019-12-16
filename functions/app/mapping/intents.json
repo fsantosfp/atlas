@@ -13,7 +13,9 @@
         "noChooseMedia",
         "yesChooseMetrics",
         "yesChooseMetrics - custom",
-        "noChooseMetrics - yes"
+        "noChooseMetrics - yes",
+        "setPeriod",
+        "newRequest - yes"
     ],
     "callback" : {
         "Welcome" : "WelcomeController",
@@ -29,6 +31,8 @@
         "noChooseMedia" : "MediaController",
         "yesChooseMetrics" : "MetricController",
         "yesChooseMetrics - custom" : "MetricController",
-        "noChooseMetrics - yes" : "ReportController"
+        "noChooseMetrics - yes" : "ReportController",
+        "setPeriod" : "RequestController",
+        "newRequest - yes" : "CampaignController"
     }
 }
