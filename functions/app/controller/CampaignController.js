@@ -1,4 +1,4 @@
-const Campaign = require('../media/Campaign');
+const Campaign = require('../core/Campaign');
 const UserRepository = require('../repository/UserRepository');
 const SessionEntities = require('../middleware/dialogflow/entity/SessionEntities');
 const SessionContexts = require('../middleware/dialogflow/contexts/Contexts');
