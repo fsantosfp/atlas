@@ -69,12 +69,11 @@ class DataProvider {
                 accounts : [this.account],
                 dataSource : this.dataSource,
                 userId : this.userId,
-                apiKey : "api_5hG2GsVc9w8oEdSEVA4P7zEn_iVGSA1PL9PTTU3Bt6Hw6JycrnW_sf9aXsaB3EQHAo_cwPaiSpcWUiz2helGYEaVZhaD8hLK9WMh"
+                apiKey : "api_Fj94VFyk9yFIUKOH22qcDaNWDr4SobVbykV7NM4dHbeVKnpJpU8bIxW2XZzSDAU3mK6M6PFPLMTosajtvEdLu1nRY7Cp8ScuwWLa"
             }
         );
 
         let data = await this.service.get();
-        
         this.parser.load(this.dataSource);
         return this.parser.transform(data,this.dataSource);
     }
