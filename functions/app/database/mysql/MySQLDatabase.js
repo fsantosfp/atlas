@@ -17,10 +17,12 @@ class MySQLDatabase {
                 ca : fs.readFileSync(__dirname + '/cert/server-ca.pem')
             },
             waitForConnections : true,
-        });
-        */
+        });*/
+        
+        
         this.pool;
         this.createPool();
+        
     }
 
     createPool(){
