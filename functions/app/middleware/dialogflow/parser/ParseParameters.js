@@ -24,7 +24,6 @@ class ParseParameters{
         for(let i = 0; i < data.length ; i++){
             let param = data[i];
             for(let key in param){
-                console.log('log: '+key);
                 if(param.hasOwnProperty(key)){
                     this.parameters[key] = param[key];
                 }
