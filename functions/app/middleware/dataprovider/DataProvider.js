@@ -32,7 +32,8 @@ class DataProvider {
 
         for( let i = 0; i < metrics.length ; i++){
             
-            let metric = this.parser.getMetric(metrics[i].toLowerCase());
+            //let metric = this.parser.getMetric(metrics[i].toLowerCase());
+            let metric = this.parser.getMetric(metrics[i]);
             
             if(this.metrics.length > 0 ){
                 this.metrics += ',';
@@ -69,7 +70,7 @@ class DataProvider {
                 accounts : [this.account],
                 dataSource : this.dataSource,
                 userId : this.userId,
-                apiKey : "api_Fj94VFyk9yFIUKOH22qcDaNWDr4SobVbykV7NM4dHbeVKnpJpU8bIxW2XZzSDAU3mK6M6PFPLMTosajtvEdLu1nRY7Cp8ScuwWLa"
+                apiKey : "api_WUViJ5eMAMWncxo4pdkujS9Fyukxjcmj5HHAC7U6fxV8uLzmtqMcyGNuTKbVf567XXd_qtqcI3mJO4H0DZcpE_B6a5cQRNjHMsAS"
             }
         );
 
