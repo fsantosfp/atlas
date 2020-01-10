@@ -15,7 +15,8 @@
         "yesChooseMetrics - custom",
         "noChooseMetrics - yes",
         "setPeriod",
-        "newRequest - yes"
+        "newRequest - yes",
+        "confirmYear"
     ],
     "callback" : {
         "Welcome" : "WelcomeController",
@@ -33,6 +34,7 @@
         "yesChooseMetrics - custom" : "MetricController",
         "noChooseMetrics - yes" : "ReportController",
         "setPeriod" : "RequestController",
-        "newRequest - yes" : "CampaignController"
+        "newRequest - yes" : "CampaignController",
+        "confirmYear" : "RequestController"
     }
 }
