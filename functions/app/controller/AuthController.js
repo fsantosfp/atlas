@@ -12,10 +12,11 @@ class AuthController {
         this.user = new UserRepository;
     }
 
-    signIn(){ return [new SignIn('Ok, vamos iniciar')];}
+    //signIn(){ return [new SignIn('Ok, vamos iniciar')];}
 
     async signInConfirmation(parameters){
-
+        return this.auth.signInConfirmation();
+        /*
         if(parameters.status !== 'OK'){
             this.chat = ['Você precisa estar logado para que eu possa te auxiliar'];
          } else {
@@ -31,9 +32,9 @@ class AuthController {
                     'Desculpe, seu acesso ainda não foi liberado, por favor entre em contato com a Crane. Obrigado!'
                 ];
             }
-        }
+        }*/
 
-        return this.chat;
+        //return this.chat;
     }
 }
 

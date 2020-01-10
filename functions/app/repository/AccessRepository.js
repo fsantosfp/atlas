@@ -6,8 +6,8 @@ class AccessRepository {
         this.access = new AccessDAO;
     }
 
-    async getAcessAccount(id){
-        return await this.access.selectAccessAccount(id);
+    async getAcessAccount(id,dataSource){
+        return await this.access.selectAccessAccount(id,dataSource);
     }
 
     async findCompanyId(email){

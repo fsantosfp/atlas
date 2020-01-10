@@ -4,8 +4,8 @@ class factoryController{
         this.controller = new _controller(conv);
     }
 
-    chat(intent,parameters){
-        return this.controller[intent](parameters);
+    chat(action,parameters){
+        return this.controller[action](parameters);
     }
 }
 

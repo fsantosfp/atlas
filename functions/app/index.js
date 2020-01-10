@@ -24,7 +24,7 @@ async function goTo(conv,...data){
     let action = (conv.action).trim();
     
     // Build a require controller
-    let controller = new FactoryController(intentMap.callback[action], conv);
+    let controller = new FactoryController(intentMap.callback[intent], conv);
     
     //get paramenters from Dialogflow
     let parser = new ParseParameters(data); 

@@ -5,7 +5,7 @@ const {Database} = require('../../../config/Config');
 class MySQLDatabase {
 
     constructor(){
-        
+        /*
         this.pool = mysql.createPool({
             user : Database.MySQL.user,
             password : Database.MySQL.pswd,
@@ -17,10 +17,12 @@ class MySQLDatabase {
                 ca : fs.readFileSync(__dirname + '/cert/server-ca.pem')
             },
             waitForConnections : true,
-        });/*
+        });*/
+        
         
         this.pool;
-        this.createPool();*/
+        this.createPool();
+        
     }
 
     createPool(){

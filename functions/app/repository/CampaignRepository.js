@@ -14,6 +14,10 @@ class CampaignRepository extends CampaignDAO{
         this.selectCampaign(name);
     }
 
+    async getAllByUser(userId){
+        return await this.selectCampaignByUser(userId);
+    }
+
 }
 
 module.exports = CampaignRepository;

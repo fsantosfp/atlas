@@ -33,8 +33,8 @@ class SessionEntities {
         let synonyms;
 
         if(typeof(synom) == "number"){
-            let position = this.position.toOrdinary(synom); 
-            this.entity.push(position);
+            //let position = this.position.toOrdinary(synom); 
+            this.entity.push(synom);
         }else{
            this.entity.push('isso','esta mesma','essa mesmo','essa mesma','correto','sim');
        }

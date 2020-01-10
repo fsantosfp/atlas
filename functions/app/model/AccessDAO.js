@@ -8,8 +8,8 @@ class AccessDAO extends Database {
         this.result = '';
     }
 
-    async selectAccessAccount(id){
-        this.query = 'SELECT platformName,accessAccountName, accessAccountId, accessUserId FROM access  INNER JOIN platforms ON platformId = accessPlatformId WHERE accessCampaignId = ' + id;
+    async selectAccessAccount(id,dataSource){
+        this.query = 'SELECT platformName as datasource,accessAccountName as accountName, accessAccountId as accountId, accessUserId  as userId FROM access  INNER JOIN platforms ON platformId = accessPlatformId WHERE accessCampaignId = ' + id + ' AND accessPlatformId IN ('+dataSource+')';
         this.result = await this.execute(this.query);
         return this.result;
     }

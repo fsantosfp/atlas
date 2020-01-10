@@ -13,6 +13,12 @@ class UserDAO extends Database{
         return result[0].userActive;
     }
 
+    async selectUserId(email){
+        this.query = 'SELECT userId FROM users WHERE userEmail = "' + email + '"';
+        const result = await this.execute(this.query);
+        return result[0].userId;
+    }
+
     async selectCompanyId(email){
         this.query = 'SELECT userCompanyId FROM users WHERE userEmail = "' + email + '"';
         const result = await this.execute(this.query);

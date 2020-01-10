@@ -1,20 +1,38 @@
 {
     "intents": [
-        "welcome",
+        "Welcome",
         "signIn",
         "signInConfirmation",
         "findCampaign",
         "reports",
         "completeRequest",
-        "chooseCampaign"
+        "chooseCampaign",
+        "aboutCampaign",
+        "yesChooseMedia",
+        "yesChooseMedia - custom",
+        "noChooseMedia",
+        "yesChooseMetrics",
+        "yesChooseMetrics - custom",
+        "noChooseMetrics - yes",
+        "setPeriod",
+        "newRequest - yes"
     ],
     "callback" : {
-        "welcome" : "WelcomeController",
+        "Welcome" : "WelcomeController",
         "signIn" : "AuthController",
-        "signInConfirmation" : "AuthController",
+        "signInConfirmation" : "WelcomeController",
         "findCampaign" : "CampaignController",
+        "aboutCampaign" : "CampaignController",
         "reports" : "ReportController",
         "request" : "CompleteRequestController",
-        "chooseCampaign" : "CompleteRequestController"
+        "chooseCampaign" : "CompleteRequestController",
+        "yesChooseMedia" : "MediaController",
+        "yesChooseMedia - custom": "MediaController",
+        "noChooseMedia" : "MediaController",
+        "yesChooseMetrics" : "MetricController",
+        "yesChooseMetrics - custom" : "MetricController",
+        "noChooseMetrics - yes" : "ReportController",
+        "setPeriod" : "RequestController",
+        "newRequest - yes" : "CampaignController"
     }
 }

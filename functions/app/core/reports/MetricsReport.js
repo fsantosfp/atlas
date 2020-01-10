@@ -1,45 +1,26 @@
-const Reports = require('./Reports');
+const BaseReports = require('./BaseReports');
 
-class MetricsReport extends Reports  {
+class MetricsReport extends BaseReports  {
 
     constructor(){
         super();
         this.metrics = '';
+        this.columns = []
         this.errors = ''; 
     }
 
-    // VERIFICAR COMO OS DADOS SÃO RETORNADOS E COMO OBTER A METRICA QUE FOI SOLICITADA
-    /*
-        SERÁ PRECISO OBTER:
-        $metricName
-        $metricValue
-    */
-
-
-    make(data){
-
-        console.log(data);
-
+    get(data){
         data.forEach((value,indice) => {
-            console.log(value.datasource);
-            this.setAbout(value.datasource);
-            this.setErrors(value.errors, value.datasource);
-            for(var metric in value.data){
-                console.log(metric + ' = ' + value.data[metric]);
-                this.setInsight(value.data[metric], metric);
+            if(value.errors.length == 0){
+                this.setAbout(value.datasource);
+                //this.setErrors(value.errors, value.datasource);
+                for(var metric in value.data){
+                    this.setInsight(value.data[metric], metric);
+                }
+            }else{
+                this.noData(value.errors);
             }
         });
-
-        /*
-        
-        for(let i = 0; i < data.length; i++){
-            this.datasource = data[i].datasource;
-            this.impressions = data[i].data.impressions;
-            this.clicks = data[i].data.clicks;
-            this.ctr = this.calcule.ctr(this.clicks, this.impressions);
-            
-            this.setInsight();
-        }*/
     }
 
     setAbout(datasource){
@@ -51,13 +32,25 @@ class MetricsReport extends Reports  {
     }
 
     setInsight(value,metric){
+        if(this.metrics != ''){
+            this.metrics += ', e ';
+        }
 
-            if(this.metrics != ''){
-                this.metrics += ', e ';
-            }
+        if(metric == 'ctr'){
+            this.metrics += Number(value).toFixed(2) + ' de ' + metric;
+        }else{
+            console.log(metric, value);
             this.metrics += value + ' de ' + metric;
+        }
+        
     }
 
+    noData(error){
+        error.map((e)=>{
+            this.errors = e;
+        });
+    }
+/*
     setErrors(errors, datasource){
         
         let len = errors.length; 
@@ -78,6 +71,17 @@ class MetricsReport extends Reports  {
 
             this.errors += datasource+ '. Mas ';
         }
+    }*/
+
+
+    setMetrics(metrics){
+        metrics.map((metric)=>{
+            this.columns.push(metric);
+        });
+    }
+
+    getMetrics(){
+        return this.columns;
     }
 
     getInsight(){
