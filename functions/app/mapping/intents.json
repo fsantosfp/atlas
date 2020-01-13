@@ -15,7 +15,11 @@
         "yesChooseMetrics - custom",
         "noChooseMetrics - yes",
         "setPeriod",
-        "newRequest - yes"
+        "newRequest - yes",
+        "ConfirmCustomReportName",
+        "EditCustomReportName",
+        "ConfirmTemplateReportName",
+        "EditTemplateReportName"
     ],
     "callback" : {
         "Welcome" : "WelcomeController",
@@ -33,6 +37,10 @@
         "yesChooseMetrics - custom" : "MetricController",
         "noChooseMetrics - yes" : "ReportController",
         "setPeriod" : "RequestController",
-        "newRequest - yes" : "CampaignController"
+        "newRequest - yes" : "CampaignController",
+        "ConfirmCustomReportName" : "CustomReportController",
+        "EditCustomReportName"  : "CustomReportController",
+        "ConfirmTemplateReportName"  : "CustomReportController",
+        "EditTemplateReportName"  : "CustomReportController"
     }
 }
