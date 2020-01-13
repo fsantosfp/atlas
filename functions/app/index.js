@@ -33,7 +33,6 @@ async function goTo(conv,...data){
     //let chat = await controller.chat(conv,params,paremeter);
 
     let chat = await controller.chat(action, parser.getParameter());
-    
     // send responses to DialogFlow
 	for (let i = 0; i < chat.length; i++ ) {
 		conv.ask(chat[i]);

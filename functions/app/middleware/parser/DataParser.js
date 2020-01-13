@@ -29,14 +29,6 @@ class DataParser {
     }
 
     transform(data, datasource){
-        /*
-        this.data = {
-            'datasource' : datasource,
-            'data' : {},
-            'errors' : []
-        };*/
-        //console.log(data);
-
         this.data.datasource = datasource;
         if(data == undefined){
             this.data.errors.push('Não foram encontrado dados para esta solicitação.');

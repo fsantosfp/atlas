@@ -3,7 +3,7 @@ const DataProvider = require('../middleware/dataprovider/DataProvider');
 const AccessRepository = require('../repository/AccessRepository');
 const SessionEntities = require('../middleware/dialogflow/entity/SessionEntities');
 const SessionContexts = require('../middleware/dialogflow/contexts/Contexts');
-const {split_date} = require('../util/Util');
+const DateFormat = require('../util/Util');
 
 class Reports extends FactoryReports {
 
@@ -24,10 +24,12 @@ class Reports extends FactoryReports {
     }
 
     getDefaultReports(param){
-        this.conv.ask("Atualmente estas são as opções: diga 1 para Overview.");
+        this.conv.ask("Atualmente estas são as opções: diga 1 para Overview, 2 para Unique Overview, 3 para Relatório de custo.");
         
         this.sessionEntities.setEntity('reports');
         this.sessionEntities.updateEntity('overview','overview',1);
+        this.sessionEntities.updateEntity('uniqueoverview','uniqueoverview',2);
+        this.sessionEntities.updateEntity('costreport','costreport',3);
         this.contexts.setContextName("chooseReport", 1);
         this.contexts.setContextParameters("campaign", param.campaign);
         this.contexts.setContextParameters("dataSources", param.dataSources);
@@ -51,18 +53,14 @@ class Reports extends FactoryReports {
 
     async make(param){
 
-        /* 
-        if(param.period.startDate == undefined){
-            this.startDate = param.period.split("T")[0];
-            this.endDate = this.startDate;
-        }else{
-            this.startDate = param.period.startDateTime.split("T")[0];
-            this.endDate = param.period.endDateTime.split("T")[0];
-        }*/
-
-        const period = split_date(param);
+        const period = DateFormat.split_date(param);
         this.startDate = period.startDate;
         this.endDate = period.endDate;
+
+        if(param.year != undefined){
+            const year = DateFormat.split_year(param);
+            this.startDate = DateFormat.merge(this.startDate,year);
+        }
 
         const access = await this.access.getAcessAccount(param.campaign,param.dataSources);
 
