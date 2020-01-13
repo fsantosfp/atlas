@@ -39,7 +39,6 @@ class MetricsReport extends BaseReports  {
         if(metric == 'ctr'){
             this.metrics += Number(value).toFixed(2) + ' de ' + metric;
         }else{
-            console.log(metric, value);
             this.metrics += value + ' de ' + metric;
         }
         

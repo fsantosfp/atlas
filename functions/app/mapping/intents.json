@@ -19,7 +19,8 @@
         "ConfirmCustomReportName",
         "EditCustomReportName",
         "ConfirmTemplateReportName",
-        "EditTemplateReportName"
+        "EditTemplateReportName",
+        "confirmYear"
     ],
     "callback" : {
         "Welcome" : "WelcomeController",
@@ -41,6 +42,7 @@
         "ConfirmCustomReportName" : "CustomReportController",
         "EditCustomReportName"  : "CustomReportController",
         "ConfirmTemplateReportName"  : "CustomReportController",
-        "EditTemplateReportName"  : "CustomReportController"
+        "EditTemplateReportName"  : "CustomReportController",
+        "confirmYear" : "RequestController"
     }
 }
