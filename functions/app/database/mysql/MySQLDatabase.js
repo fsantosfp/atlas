@@ -19,7 +19,6 @@ class MySQLDatabase {
             waitForConnections : true,
         });*/
         
-        
         this.pool;
         this.createPool();
         
