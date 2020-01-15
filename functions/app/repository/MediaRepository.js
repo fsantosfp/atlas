@@ -24,6 +24,10 @@ class MediaRepository {
         return result[0].name;
     }
 
+    async find(dataSourceName){
+        return await this.dao.selectId(dataSourceName);
+    }
+
 }
 
 module.exports = MediaRepository;

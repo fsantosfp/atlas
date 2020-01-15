@@ -22,6 +22,11 @@ class PlatformDAO extends DataBase {
         return await this.execute('SELECT platformName AS name from platforms WHERE platformId = '+id);
     }
 
+    async selectId(dataSource){
+        //console.log(`SELECT platformId as id FROM platforms WHERE platformName = '${dataSource}'`);
+        return await this.execute(`SELECT platformId as id FROM platforms WHERE platformName = '${dataSource}'`);
+    }
+
 }
 
 module.exports = PlatformDAO;
