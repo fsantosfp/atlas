@@ -14,8 +14,8 @@ class CustomReportRepository {
         return this.customReport.selectStructure(userId, reportId)
     }
 
-    async add(userId, name){
-        let reportId = await this.customReport.insertCustomReport(name, userId);
+    async add(userId, name, period){
+        let reportId = await this.customReport.insertCustomReport(name, userId, period);
         return reportId;
      }
      

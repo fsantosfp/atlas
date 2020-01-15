@@ -8,8 +8,8 @@ class CustomReportDAO extends Database {
         this.result = '';
     }
 
-    async insertCustomReport(name, user_id){
-        this.query = `INSERT INTO customReports (name,userId) VALUES ('${name}', ${user_id});`;
+    async insertCustomReport(name, user_id,period){
+        this.query = `INSERT INTO customReports (name,userId, period) VALUES ('${name}', ${user_id}, ${period});`;
         await this.execute(this.query);
         this.query = `SELECT LAST_INSERT_ID() AS id`;
         let result = await this.execute(this.query);
