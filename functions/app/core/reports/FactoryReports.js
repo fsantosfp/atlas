@@ -1,7 +1,7 @@
-const OverviewReport = require('./OverviewReport');
-const UniqueOverviewReport = require('./UniqueOverviewReport');
-const MetricsReports = require('./MetricsReport');
-const CostReport = require('./CostReport');
+const OverviewReport = require('../../template/OverviewReport');
+const UniqueOverviewReport = require('../../template/UniqueOverviewReport');
+const MetricsReports = require('../../template/MetricsReport');
+const CostReport = require('../../template/CostReport');
 
 class FactoryReports {
 
