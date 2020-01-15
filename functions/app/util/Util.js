@@ -47,3 +47,20 @@ exports.merge = (date , year)=>{
     const d = date.replace(/^[0-9]{4}/,year);
     return d;
 }
+
+exports.date_diff_indays = (date1, date2) => {
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
+
+   return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
+}
+
+exports.date_days_inperiod = (days) => {
+    let dt1 = new Date(Date.now());
+    let dt2 = new Date(today.getFullYear(), today.getMonth(), today.getDate() - days);
+
+    let startDate = `${dt2.getFullYear()}/${dt2.getMonth()}/${dt2.getDate()}`;
+    let endDate = `${dt1.getFullYear()}/${dt1.getMonth()}/${dt1.getDate()}`;
+
+    return {startDate : startDate, endDate : endDate};
+}
