@@ -19,11 +19,11 @@ class WelcomeController {
     }
 
     login(){
-        if(this.auth.isLogged()){
+        //if(this.auth.isLogged()){
             return this.welcome();
-        }else{
-            return this.auth.signIn();
-        }
+        //}else{
+            //return this.auth.signIn();
+        //}
     }
 
     async loginConfirmation(parameters){
